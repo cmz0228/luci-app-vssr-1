@@ -152,7 +152,7 @@ endef
 
 define Package/luci-app-vssr/conffiles
 /etc/ssr_ip
-/etc/dnsmasq.ssr/gfw_list.conf
+/etc/dnsmasq.d/gfw_list.conf
 endef
 
 define Package/luci-app-vssr/install

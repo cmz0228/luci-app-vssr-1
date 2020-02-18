@@ -26,7 +26,7 @@ local chinadns_run=0
 local haproxy_run=0
 local privoxy_run=0
 
-if nixio.fs.access("/etc/dnsmasq.ssr/gfw_list.conf") then
+if nixio.fs.access("/etc/dnsmasq.d/gfw_list.conf") then
 gfwmode=1		
 end
 
@@ -86,14 +86,14 @@ else
 end
 
 if gfwmode==1 then 
- gfw_count = tonumber(sys.exec("cat /etc/dnsmasq.ssr/gfw_list.conf | wc -l"))/2
- if nixio.fs.access("/etc/dnsmasq.ssr/ad.conf") then
-  ad_count=tonumber(sys.exec("cat /etc/dnsmasq.ssr/ad.conf | wc -l"))
+ gfw_count = tonumber(sys.exec("cat /etc/dnsmasq.d/gfw_list.conf | wc -l"))/2
+ if nixio.fs.access("/etc/dnsmasq.d/ad.conf") then
+  ad_count=tonumber(sys.exec("cat /etc/dnsmasq.d/ad.conf | wc -l"))
  end
 end
  
-if nixio.fs.access("/etc/china_ssr.txt") then 
- ip_count = sys.exec("cat /etc/china_ssr.txt | wc -l")
+if nixio.fs.access("/etc/china_vssr.txt") then 
+ ip_count = sys.exec("cat /etc/china_vssr.txt | wc -l")
 end
 
 

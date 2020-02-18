@@ -6,19 +6,19 @@ local gfwmode=0
 local gfw_count=0
 local ip_count=0
 
-if nixio.fs.access("/etc/dnsmasq.ssr/gfw_list.conf") then
+if nixio.fs.access("/etc/dnsmasq.d/gfw_list.conf") then
 gfwmode=1		
 end
 
 local sys = require "luci.sys"
 
 if gfwmode==1 then 
- gfw_count = tonumber(sys.exec("cat /etc/dnsmasq.ssr/gfw_list.conf | wc -l"))/2
+ gfw_count = tonumber(sys.exec("cat /etc/dnsmasq.d/gfw_list.conf | wc -l"))/2
 
 end
  
-if nixio.fs.access("/etc/china_ssr.txt") then 
- ip_count = sys.exec("cat /etc/china_ssr.txt | wc -l")
+if nixio.fs.access("/etc/china_vssr.txt") then 
+ ip_count = sys.exec("cat /etc/china_vssr.txt | wc -l")
 end
 
 uci:foreach(vssr, "servers", function(s)
@@ -73,6 +73,9 @@ s.anonymous = true
 
 o = s:option(Flag, "adblock", translate("Enable adblock"))
 o.rmempty = false
+
+o = s:option(Value, "adblock_url", translate("adblock_url"))
+o.default = "https://easylist-downloads.adblockplus.org/easylistchina+easylist.txt"
 
 -- [[ haProxy ]]--
 

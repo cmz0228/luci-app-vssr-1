@@ -52,7 +52,7 @@ end)
 
 s:tab("esc",  translate("Bypass Domain List"))
 
-local escconf = "/etc/config/white.list"
+local escconf = "/etc/config/whitelist.list"
 o = s:taboption("esc", TextValue, "escconf")
 o.rows = 13
 o.wrap = "off"
@@ -70,7 +70,7 @@ end
 
 s:tab("block",  translate("Black Domain List"))
 
-local blockconf = "/etc/config/black.list"
+local blockconf = "/etc/config/blacklist.list"
 o = s:taboption("block", TextValue, "blockconf")
 o.rows = 13
 o.wrap = "off"
