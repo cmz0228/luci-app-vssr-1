@@ -237,7 +237,7 @@ do
 			echo "$(date "+%Y-%m-%d %H:%M:%S") chinadns tunnel error.restart!" >> ${logfile}
 			kill -9 $(ps | grep chinadns | grep -v grep | awk '{print $1}') >/dev/null 2>&1 
 
-			(nohup /usr/bin/chinadns -p 5335 -c /etc/china_ssr.txt -m -d -s $dnsstrs >/dev/null 2>&1 &)
+			(nohup /usr/bin/chinadns -p 5335 -c /etc/china_vssr.txt -m -d -s $dnsstrs >/dev/null 2>&1 &)
 		fi   
 	fi 
 #haproxy
