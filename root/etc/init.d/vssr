@@ -977,25 +977,25 @@ start() {
 #
 #		sed -i "/$DOMAIN_NANES/d" /etc/dnsmasq.ssr/custom_forward.conf
 #		sed -i "/$DOMAIN_NANES/d" /etc/dnsmasq.ssr/gfw_base.conf
-#		sed -i "/$DOMAIN_NANES/d" /etc/dnsmasq.ssr/gfw_list.conf
+#		sed -i "/$DOMAIN_NANES/d" /etc/dnsmasq.d/gfw_list.conf
 #	done
 
 	sleep 2
 
 		cat > /tmp/dnsmasq.d/dnsmasq-ssr.conf <<EOF
-conf-dir=/var/etc/dnsmasq.ssr
+conf-dir=/var/etc/dnsmasq.d
 EOF
-			mkdir -p /var/etc/dnsmasq.ssr
-			ln -s /etc/dnsmasq.ssr/* /var/etc/dnsmasq.ssr/
+			mkdir -p /var/etc/dnsmasq.d
+			ln -s /etc/dnsmasq.d/* /var/etc/dnsmasq.d/
 
 		else
 		cat > /tmp/dnsmasq.d/dnsmasq-ssr.conf <<EOF
-conf-dir=/var/etc/dnsmasq.oversea
+conf-dir=/var/etc/dnsmasq.abroad
 EOF
 
-			mkdir -p /var/etc/dnsmasq.oversea
-			ln -s /etc/dnsmasq.oversea/* /var/etc/dnsmasq.oversea/
-			ln -s /etc/dnsmasq.ssr/appoint_list.conf /var/etc/dnsmasq.oversea/appoint_list.conf
+			mkdir -p /var/etc/dnsmasq.abroad
+			ln -s /etc/dnsmasq.abroad/* /var/etc/dnsmasq.abroad/
+			ln -s /etc/dnsmasq.d/appoint_list.conf /var/etc/dnsmasq.abroad/appoint_list.conf
 
 		fi
 	
@@ -1080,12 +1080,12 @@ stop() {
 	if [ -f "/tmp/dnsmasq.d/dnsmasq-ssr.conf" ]; then
 		rm -f /tmp/dnsmasq.d/dnsmasq-ssr.conf
 
-		if [ -d  "/var/dnsmasq.ssr" ]; then
-			rm -rf /var/etc/dnsmasq.ssr
+		if [ -d  "/var/dnsmasq.d" ]; then
+			rm -rf /var/etc/dnsmasq.d
 		fi
 
-		if [ -d  "/var/dnsmasq.oversea" ]; then
-			rm -rf /var/etc/dnsmasq.oversea
+		if [ -d  "/var/dnsmasq.abroad" ]; then
+			rm -rf /var/etc/dnsmasq.abroad
 		fi
 		/etc/init.d/dnsmasq restart >/dev/null 2>&1
 	fi
