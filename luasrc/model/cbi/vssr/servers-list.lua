@@ -54,7 +54,10 @@ o = s:option(DummyValue, "server_port", translate("Server Port"))
 function o.cfgvalue(...)
 	return Value.cfgvalue(...) or "?"
 end
-
+o = s:option(Flag, "switch_enable", translate("Enable Auto Switch"))
+function o.cfgvalue(...)
+	return Value.cfgvalue(...) or "?"
+end
 o = s:option(DummyValue, "encrypt_method", translate("Encrypt Method"))
 o.width="10%"
 
